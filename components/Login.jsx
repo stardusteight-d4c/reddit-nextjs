@@ -1,8 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState } from 'react'
+import React from 'react'
 import { supabase } from '../services/supabaseClient'
-import Loading from './Loading'
-import { useEffect } from 'react'
+
 
 const style = {
   wrapper: 'flex min-h-screen flex-col items-center justify-center space-y-2',

@@ -6,6 +6,7 @@ const style = {
 }
 
 const Feed = ({ posts }) => {
+  console.log('posts', posts);
   return (
     <div className={style.wrapper}>
       {posts.map((post, index) => (

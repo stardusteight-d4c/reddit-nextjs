@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useContext } from 'react'
+import { RedditContext } from '../../context/RedditContext'
 import Icons from './Icons'
 import Logo from './Logo'
 import SearchBar from './SearchBar'
@@ -15,6 +16,8 @@ const style = {
 }
 
 const Header = () => {
+  const { currentUser } = useContext(RedditContext)
+
   return (
     <header className={style.header}>
       <div className={style.wrapper}>
@@ -29,7 +32,7 @@ const Header = () => {
             <div className={style.profileImageContainer}>
               <Image
                 className={style.profileImage}
-                src="https://github.com/stardusteight-d4c.png"
+                src={currentUser?.user_metadata.avatar_url}
                 layout="fill"
                 alt="Profile Image"
               />

@@ -22,6 +22,8 @@ const style = {
 const Home: NextPage = () => {
   const { currentUser, fetcher } = useContext(RedditContext)
 
+  console.log(currentUser);
+  
   const [myPosts, setMyPosts] = useState([])
 
   const { data, error } = useSWR('/api/get-posts', fetcher, {

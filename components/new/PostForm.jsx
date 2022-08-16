@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { supabase } from '../../services/supabaseClient'
 import Loading from '../Loading'
+import { RedditContext } from '../../context/RedditContext'
 
 const style = {
   wrapper: 'flex flex-col space-y-6',
@@ -14,10 +15,13 @@ const style = {
 }
 
 const PostForm = () => {
+  const { currentUser } = useContext(RedditContext)
   const [isLoading, setIsLoading] = useState(false)
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const router = useRouter()
+
+  console.log(currentUser);
 
   const createPost = async (event) => {
     event.preventDefault()
@@ -26,7 +30,7 @@ const PostForm = () => {
       setIsLoading(true)
       await supabase.from('feed').insert([
         {
-          author: 'Stardusteight-d4c',
+          author: currentUser,
           title: title,
           content: content,
         },

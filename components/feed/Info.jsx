@@ -11,12 +11,13 @@ const style = {
 }
 
 const Info = ({ author }) => {
+  console.log(author)
   return (
     <div className={style.wrapper}>
       <div className={style.profilePicContainer}>
         <img
           className={style.profilePic}
-          src="https://github.com/stardusteight-d4c.png"
+          src={avatar}
         />
       </div>
       <div className={style.tag}>r/VALORANT</div>

@@ -14,7 +14,7 @@ const style = {
   postContent: 'text-sm font-light text-[#d7dadc]/80',
 }
 
-const Post = ({ id, author, title, content, upvotes, downvotes, created_at }) => {
+const Post = ({ id, author, avatar, title, content, upvotes, downvotes, created_at }) => {
   const router = useRouter()
   const { setSelectedPost } = useContext(RedditContext)
 
@@ -24,6 +24,7 @@ const Post = ({ id, author, title, content, upvotes, downvotes, created_at }) =>
       title,
       content,
       author,
+      avatar,
       created_at,
       upvotes,
       downvotes,
@@ -36,7 +37,7 @@ const Post = ({ id, author, title, content, upvotes, downvotes, created_at }) =>
     <div className={style.wrapper}>
       <Vote upvotes={upvotes} downvotes={downvotes} />
       <div className={style.post} onClick={navigateToPost}>
-        <Info author={author} />
+        <Info author={author} avatar={avatar} />
         <h1 className={style.postTitle}>{title}</h1>
         <p className={style.postContent}>{content}</p>
         <Actions />
