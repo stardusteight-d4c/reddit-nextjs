@@ -4,11 +4,7 @@
 
 html,
 body {
-  @apply antialiased scroll-smooth transition-all font-noto-sans;
-}
-
-* {
-  color: white;
+  @apply antialiased scroll-smooth transition-all font-noto-sans text-white;
 }
 
 .bg-coin {
@@ -23,4 +19,14 @@ body {
 
 .shadow-coin {
   box-shadow: 0 2px 0 #eed000;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  hight: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cccccc;
+  border-radius: 20px;
 }
