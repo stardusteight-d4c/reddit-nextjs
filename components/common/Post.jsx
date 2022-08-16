@@ -10,19 +10,15 @@ const style = {
   postContent: 'text-sm font-light text-[#d7dadc]/80',
 }
 
-const Post = ({ id, title, author }) => {
+const Post = ({ id, author, title, content, upvotes, downvotes }) => {
   return (
     <div className={style.wrapper}>
-      <Vote />
+      <Vote upvotes={upvotes} downvotes={downvotes} />
       <div className={style.post}>
         <Info author={author} />
         <h1 className={style.postTitle}>{title}</h1>
         <p className={style.postContent}>
-          I want to make sage look more sassy and glamorous on this one, and
-          make her look really confident, xD i learned alot on this piece, and
-          my brain hurts on all the lighting i tried, maybe next time ill try to
-          focus on just a single main light, cause it ended up a bit hard to
-          read but thats all. hope you all enjoy this fanart (repost)
+          {content}
         </p>
         <Actions />
       </div>

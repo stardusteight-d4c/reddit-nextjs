@@ -7,19 +7,14 @@ const style = {
   wrapper: 'flex flex-col items-center',
 }
 
-const Vote = () => {
-  const dummyData = {
-    upvotes: 10,
-    downvotes: 5,
-  }
-
+const Vote = ({ upvotes, downvotes }) => {
   return (
     <div className={style.wrapper}>
       <button>
         <UpvoteIcon />
       </button>
 
-      <p className={style.votes}>{dummyData.upvotes - dummyData.downvotes}</p>
+      <p className={style.votes}>{upvotes - downvotes}</p>
 
       <button>
         <DownvoteIcon />
