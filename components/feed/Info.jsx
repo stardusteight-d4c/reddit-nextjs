@@ -10,8 +10,7 @@ const style = {
   postedBy: 'flex items-center space-x-1',
 }
 
-const Info = ({ author }) => {
-  console.log(author)
+const Info = ({ author, avatar }) => {
   return (
     <div className={style.wrapper}>
       <div className={style.profilePicContainer}>

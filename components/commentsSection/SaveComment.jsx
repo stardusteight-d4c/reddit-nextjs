@@ -14,8 +14,6 @@ const SaveComment = ({ postId }) => {
   const { currentUser } = useContext(RedditContext)
   const [input, setInput] = useState('')
 
-  console.log(postId);
-
   const saveComment = async () => {
     try {
       await supabase.from('comments').insert({

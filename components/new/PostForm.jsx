@@ -21,8 +21,6 @@ const PostForm = () => {
   const [content, setContent] = useState('')
   const router = useRouter()
 
-  console.log(currentUser);
-
   const createPost = async (event) => {
     event.preventDefault()
 
@@ -30,7 +28,9 @@ const PostForm = () => {
       setIsLoading(true)
       await supabase.from('feed').insert([
         {
-          author: currentUser,
+          userId: currentUser.id,
+          author: currentUser.user_metadata.full_name,
+          avatar: currentUser.user_metadata.avatar_url,
           title: title,
           content: content,
         },

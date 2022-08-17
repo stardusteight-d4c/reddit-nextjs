@@ -41,7 +41,7 @@ const Comments = ({ postId }) => {
   return (
     <>
       <div className={style.wrapper}>
-        {comments &&
+        {comments.length > 0 ? (
           comments.map((comment, index) => (
             <div key={index} className={style.commentContainer}>
               <div className={style.postInfoContainer}>
@@ -56,10 +56,7 @@ const Comments = ({ postId }) => {
                 <span>{comment.user}</span>
                 <span className={style.infoPostedTimeago}>
                   <span>•</span>{' '}
-                  {timeAgo.format(
-                    new Date(comment.created_at),
-                    'twitter-now'
-                  )}{' '}
+                  {timeAgo.format(new Date(comment.created_at), 'twitter-now')}{' '}
                   ago
                 </span>
               </div>
@@ -82,7 +79,11 @@ const Comments = ({ postId }) => {
                 <span className={style.icon}>Follow</span>
               </div>
             </div>
-          ))}
+          )) ): (
+            <div>
+              <h3>There are no comments</h3>
+            </div>
+          )}
       </div>
     </>
   )
