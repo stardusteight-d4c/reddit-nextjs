@@ -7,7 +7,7 @@ const style = {
   input:
     'rounded border border-[#343536] bg-[#1a1a1b] min-h-[100px] max-h-[300px] px-4 py-2 text-left text-sm text-white focus:outline-none',
   commentBtn:
-    'rounded-full bg-gray-200 px-4 py-1.5 text-xs font-semibold text-[#1a1a1b]',
+    'rounded-full bg-gray-200 px-4 py-1.5 text-xs font-semibold text-[#1a1a1b] disabled:cursor-not-allowed disabled:bg-gray-400',
 }
 
 const SaveComment = ({ postId }) => {
@@ -46,7 +46,11 @@ const SaveComment = ({ postId }) => {
         placeholder="What are your thoughts?"
       />
       <div className="flex justify-end pt-2">
-        <button onClick={() => saveComment()} className={style.commentBtn}>
+        <button
+          onClick={() => saveComment()}
+          className={style.commentBtn}
+          disabled={!input.trim()}
+        >
           Comment
         </button>
       </div>

@@ -10,7 +10,7 @@ const style = {
     'max-h-[440px] bg-[#1a1a1b] border border-[#343536] px-4 py-2 text-left text-sm text-white focus:outline-none',
   title: 'border-b border-[#343536] pb-3 text-lg font-medium',
   postBtn:
-    'bg-gray-200 px-4 py-1.5 text-xs font-semibold text-[#1a1a1b] rounded-full',
+    'bg-gray-200 px-4 py-1.5 text-xs font-semibold text-[#1a1a1b] rounded-full disabled:cursor-not-allowed disabled:bg-gray-400',
   postBtnContainer: 'flex justify-end pt-2',
 }
 
@@ -52,7 +52,6 @@ const PostForm = () => {
           className={style.input}
           type="text"
           placeholder="Title"
-          required
           value={title}
           onChange={(event) => setTitle(event.currentTarget.value)}
         />
@@ -64,13 +63,16 @@ const PostForm = () => {
           cols="30"
           rows="10"
           placeholder="Text (required)"
-          required
           value={content}
           onChange={(event) => setContent(event.currentTarget.value)}
         />
 
         <div className={style.postBtnContainer}>
-          <button className={style.postBtn} onClick={createPost}>
+          <button
+            disabled={!title.trim() || !content.trim()}
+            className={style.postBtn}
+            onClick={createPost}
+          >
             Post
           </button>
         </div>
