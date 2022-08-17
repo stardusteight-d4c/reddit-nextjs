@@ -52,6 +52,7 @@ const PostForm = () => {
           className={style.input}
           type="text"
           placeholder="Title"
+          required
           value={title}
           onChange={(event) => setTitle(event.currentTarget.value)}
         />
@@ -63,6 +64,7 @@ const PostForm = () => {
           cols="30"
           rows="10"
           placeholder="Text (required)"
+          required
           value={content}
           onChange={(event) => setContent(event.currentTarget.value)}
         />
