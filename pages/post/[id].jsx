@@ -24,7 +24,7 @@ const PostView = () => {
     }
   }, [router, selectedPost])
 
-  console.log(selectedPost)
+  // console.log(selectedPost)
 
   return (
     <>
