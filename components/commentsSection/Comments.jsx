@@ -56,8 +56,7 @@ const Comments = ({ postId }) => {
                 <span>{comment.user}</span>
                 <span className={style.infoPostedTimeago}>
                   <span>•</span>{' '}
-                  {timeAgo.format(new Date(comment.created_at), 'twitter-now')}{' '}
-                  ago
+                  {timeAgo.format(new Date(comment.created_at), 'twitter-now')}
                 </span>
               </div>
               <div>{comment.comment}</div>
@@ -79,11 +78,12 @@ const Comments = ({ postId }) => {
                 <span className={style.icon}>Follow</span>
               </div>
             </div>
-          )) ): (
-            <div>
-              <h3>There are no comments</h3>
-            </div>
-          )}
+          ))
+        ) : (
+          <div>
+            <h3>There are no comments</h3>
+          </div>
+        )}
       </div>
     </>
   )

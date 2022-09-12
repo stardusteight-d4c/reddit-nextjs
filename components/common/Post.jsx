@@ -49,7 +49,7 @@ const Post = ({ id, author, avatar, title, content, upvotes, downvotes, created_
     <div className={style.wrapper}>
       <Vote upvotes={upvotes} downvotes={downvotes} />
       <div className={style.post} onClick={navigateToPost}>
-        <Info author={author} avatar={avatar} />
+        <Info author={author} avatar={avatar} created_at={created_at} />
         <h1 className={style.postTitle}>{title}</h1>
         <p className={style.postContent}>{content}</p>
         <Actions comments={comments} />
