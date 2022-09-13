@@ -83,7 +83,7 @@ Now that we have access to the user's `metadata`, we must create a `session`, an
 
 
 ```jsx
-context/RedditContext.js 
+// context/RedditContext.js 
 
 import React, { createContext, useEffect, useState } from 'react'
 import { supabase } from '../services/supabaseClient'
