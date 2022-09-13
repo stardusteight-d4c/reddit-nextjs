@@ -1,16 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react'
 import useSWR from 'swr'
 import Image from 'next/image'
-import TimeAgo from 'javascript-time-ago'
-import en from 'javascript-time-ago/locale/en'
+import ReactTimeAgo from 'react-time-ago'
 
 import { RedditContext } from '../../context/RedditContext'
 import { UpvoteIcon } from '../common/UpvoteIcon'
 import { DownvoteIcon } from '../common/DownvoteIcon'
 import { ChatAltIcon } from '@heroicons/react/outline'
 
-TimeAgo.addDefaultLocale(en)
-const timeAgo = new TimeAgo('en-US')
 
 const Comments = ({ postId }) => {
   const [comments, setComments] = useState([])
@@ -56,7 +53,7 @@ const Comments = ({ postId }) => {
                 <span>{comment.user}</span>
                 <span className={style.infoPostedTimeago}>
                   <span>•</span>{' '}
-                  {timeAgo.format(new Date(comment.created_at), 'twitter-now')}
+                  {comment.created_at &&  <ReactTimeAgo date={comment.created_at} locale="en" />}
                 </span>
               </div>
               <div>{comment.comment}</div>

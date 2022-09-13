@@ -1,11 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
-import TimeAgo from 'javascript-time-ago'
-import en from 'javascript-time-ago/locale/en'
-
-TimeAgo.addLocale(en)
-const timeAgo = new TimeAgo('en-US')
+import ReactTimeAgo from 'react-time-ago'
 
 const style = {
   profilePic: 'w-4 h-4 rounded-full',
@@ -26,7 +22,9 @@ const Info = ({ author, avatar, created_at }) => {
       <div className={style.postedBy}>
         <span>Posted by {author}</span>
         <span>•</span>
-        <span>{timeAgo.format(new Date(created_at), 'twitter-now')}</span>
+        <span>
+          {created_at && <ReactTimeAgo date={created_at} locale="en" />}
+        </span>
       </div>
     </div>
   )

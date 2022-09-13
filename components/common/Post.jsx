@@ -45,6 +45,8 @@ const Post = ({ id, author, avatar, title, content, upvotes, downvotes, created_
     router.push(`/post/${id}`)
   }
 
+  // console.log('Posts date', created_at)
+
   return (
     <div className={style.wrapper}>
       <Vote upvotes={upvotes} downvotes={downvotes} />
