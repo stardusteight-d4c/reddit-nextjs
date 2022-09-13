@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
-import en from 'javascript-time-ago/locale/en'
 import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
 
 TimeAgo.addLocale(en)
 const timeAgo = new TimeAgo('en-US')

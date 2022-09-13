@@ -51,7 +51,7 @@ const Home: NextPage = () => {
     saveAndUpdateUser()
   }, [currentUser])
 
-  console.log(myPosts)
+  // console.log(myPosts)
 
   return (
     <>
