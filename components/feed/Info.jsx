@@ -1,7 +1,12 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
+
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
 import ReactTimeAgo from 'react-time-ago'
+
+TimeAgo.addLocale(en)
 
 const style = {
   profilePic: 'w-4 h-4 rounded-full',

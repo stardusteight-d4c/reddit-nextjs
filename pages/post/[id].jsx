@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Post from '../../components/common/Post'
 import { useContext } from 'react'
 import { RedditContext } from '../../context/RedditContext'
@@ -8,29 +8,69 @@ import Comments from '../../components/commentsSection/Comments'
 import SaveComment from '../../components/commentsSection/SaveComment'
 import Head from 'next/head'
 
+import { supabase } from '../../services/supabaseClient'
+
 const style = {
   wrapper: 'flex min-h-screen flex-col bg-black text-white',
   container: 'mx-auto flex w-full max-w-5xl flex-1 space-x-6 py-[5rem] px-6',
   containerWrapper: 'w-full space-y-4 lg:w-2/3',
 }
 
+/**
+ * getStaticPaths is needed to check which routes in post/[id] exist, 
+ * otherwise it returns 404.
+ */
+export async function getStaticPaths() {
+  const { data } = await supabase
+  .from('feed')
+  .select('id')
+  // console.log(data[0]);
+
+  const paths = data.map((path) => {
+    return { params: { id: path.id.toString() } }
+  })
+  // console.log('paths', paths)
+
+  return {
+    paths: paths,
+    fallback: false, // can also be true or 'blocking'
+  }
+}
+
+
+// Without getStaticProps, getStaticPaths does nothing
+export async function getStaticProps(context) {
+  return {
+    // Passed to the page component as props
+    props: { post: {} },
+  }
+}
+
 const PostView = () => {
   const router = useRouter()
-  const { selectedPost } = useContext(RedditContext)
-
-  // console.log(selectedPost);
+  const { selectedPost, setSelectedPost } = useContext(RedditContext)
+  const id = router.query.id
+  // console.log(id)
 
   useEffect(() => {
-    if (!selectedPost) {
-      router.push('/')
+    const fetchPost = async () => {
+      if (id) {
+        const response = await fetch(`/api/get-post?postId=${id}`).then((res) =>
+          res.json()
+        )
+        // console.log(response.data[0])
+        if (!selectedPost) setSelectedPost(response.data[0])
+      } else {
+        return
+      }
     }
-  }, [router, selectedPost])
-
-  // console.log(selectedPost)
+    fetchPost()
+  }, [id])
+  // console.log('selectedPost', selectedPost)
 
   return (
     <>
-      {selectedPost && (
+      {selectedPost ? (
         <div>
           <Head>
             <title>VALORANT | Post from {selectedPost?.author}</title>
@@ -47,6 +87,8 @@ const PostView = () => {
             </div>
           </div>
         </div>
+      ) : (
+        <div>Loading...</div>
       )}
     </>
   )

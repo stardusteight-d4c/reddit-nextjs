@@ -14,7 +14,7 @@ import Login from '../components/Login'
 
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
-TimeAgo.addDefaultLocale(en)
+TimeAgo.addLocale(en)
 
 
 const style = {
