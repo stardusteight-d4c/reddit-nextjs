@@ -285,7 +285,7 @@ In many cases, data changes because of multiple devices, multiple users, multipl
 
 SWR will give you the option to automatically refetch data. It’s smart which means refetching will only happen if the component associated with the hook is on screen.
 
-You can enable it by setting a refreshInterval value:
+You can enable it by setting a `refreshInterval` value:
 
 ```js
 useSWR('/api/todos', fetcher, { refreshInterval: 1000 })
