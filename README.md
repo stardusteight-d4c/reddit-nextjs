@@ -7,7 +7,6 @@
 :arrow_right: Supabase and Authentication <br />
 :arrow_right: Supabase and API Routes <br />
 :arrow_right: SWR - React Hooks for Data Fetching <br />
-:arrow_right: Dynamic Routes with getStaticPaths <br />
 <br />
 
 ## Supabase and Authentication
