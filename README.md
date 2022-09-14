@@ -232,6 +232,66 @@ export default getPosts
 ```
 *<i>supabase.com/docs/guides/api</i>
 
+<br />
+
+## SWR - React Hooks for Data Fetching
+
+If your page contains `frequently updating data`, and you don’t need to pre-render the data, SWR is a perfect fit and no special setup needed: just import `useSWR` and use the hook inside any components that use the data.
+
+- First, immediately show the page without data. You can show loading states for missing data.
+- Then, fetch the data on the client side and display it when ready.
+
+This approach works well for user dashboard pages, for example. Because a dashboard is a private, user-specific page, SEO is not relevant and the page doesn’t need to be pre-rendered. The data is frequently updated, which requires request-time data fetching.
+
+### Data Fetching with useSWR hook
+
+For normal RESTful APIs with JSON data, first you need to create a `fetcher function`, which is just a wrapper of the native fetch:
+
+```js
+const fetcher = (...args) => fetch(...args).then(res => res.json())
+```
+
+Then you can import useSWR and start using it inside any function components:
+
+```jsx
+import useSWR from 'swr'
+
+function Profile () {
+  const { data, error } = useSWR('/api/user/123', fetcher)
+
+  if (error) return <div>failed to load</div>
+  if (!data) return <div>loading...</div>
+
+  // render data
+  return <div>hello {data.name}!</div>
+}
+```
+
+Normally, there're 3 possible states of a request: `loading`, `ready`, or `error`. You can use the value of data and error to determine the current state of the request, and return the corresponding UI.
+
+### Arguments
+
+By default, `key` will be passed to `fetcher` as the argument. So the following 3 expressions are equivalent:
+
+```js
+useSWR('/api/user', () => fetcher('/api/user'))
+useSWR('/api/user', url => fetcher(url))
+useSWR('/api/user', fetcher)
+```
+
+### Revalidate on Interval
+
+In many cases, data changes because of multiple devices, multiple users, multiple tabs. How can we over time update the data on screen?
+
+SWR will give you the option to automatically refetch data. It’s smart which means refetching will only happen if the component associated with the hook is on screen.
+
+You can enable it by setting a refreshInterval value:
+
+```js
+useSWR('/api/todos', fetcher, { refreshInterval: 1000 })
+```
+
+*<i>swr.vercel.app/docs</i>
 
 
 
